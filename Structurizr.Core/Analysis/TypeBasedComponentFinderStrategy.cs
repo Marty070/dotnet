@@ -24,7 +24,9 @@ namespace Structurizr.Analysis
         {
             List<Component> components = new List<Component>();
 
-            IEnumerable<Type> types =   from a in AppDomain.CurrentDomain.GetAssemblies()
+            var x = AppDomain.CurrentDomain.GetAssemblies();
+
+            IEnumerable<Type> types =   from a in AppDomain.CurrentDomain.GetAssemblies().Where(w => w.FullName.Contains("Contoso"))
                                         from t in a.GetTypes()
                                         where InNamespace(t)
                                         select t;
