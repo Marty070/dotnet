@@ -40,7 +40,7 @@ namespace RunExample
             //Container database = contosoUniversity.AddContainer("Database", "Stores information about students, courses and instructors", "Microsoft SQL Server Express LocalDB");
             //database.AddTags("Database");
             //database.Url = "https://github.com/simonbrowndotje/ContosoUniversity/tree/master/ContosoUniversity/Migrations";
-            
+
             //universityStaff.Uses(webApplication, "Uses", "HTTPS");
             //webApplication.Uses(database, "Reads from and writes to");
 
@@ -53,7 +53,7 @@ namespace RunExample
 
             //ComponentFinder componentFinder = new ComponentFinder(
             //    webApplication,
-            //    typeof(ContosoUniversity.MvcApplication).Namespace, // doing this typeof forces the ContosoUniversity assembly to be loaded
+            //    typeof(ContosoUniversity.MvcApplication).Namespace,
             //    new TypeBasedComponentFinderStrategy(
             //        new InterfaceImplementationTypeMatcher(typeof(System.Web.Mvc.IController), null, "ASP.NET MVC Controller"),
             //        new ExtendsClassTypeMatcher(typeof(System.Data.Entity.DbContext), null, "Entity Framework DbContext")
@@ -69,14 +69,6 @@ namespace RunExample
 
             //ComponentView componentView = views.CreateComponentView(webApplication, "Components", "The components inside the Contoso University web application.");
             //componentView.AddAllElements();
-
-            #endregion
-
-            #region Database
-
-            //// rather than creating a component model for the database, let's simply link to the DDL
-            //// (this is really just an example of linking an arbitrary element in the model to an external resource)
-            //
 
             #endregion
 
