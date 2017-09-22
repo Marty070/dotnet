@@ -12,16 +12,19 @@ namespace RunExample
     {
         static void Main(string[] args)
         {
-            CreateContosoExample();
+            var workSpaceId = 37192;
+            var apiKey = "130be122-6b80-4bfa-8a0b-5106fdf533cd";
+            var apiSecret = "7764a340-bf53-4a40-a5c6-37034f7d2648";
+
+            CreateContosoExample(workSpaceId, apiKey, apiSecret);
 
             Console.WriteLine("Done!");
             Console.ReadKey();
 
         }
 
-        private static void CreateContosoExample()
+        private static void CreateContosoExample(int workSpaceId, string apiKey, string apiSecret)
         {
-
             Workspace workspace = new Workspace("Contoso University", "A software architecture model of the Contoso University sample project.");
             Model model = workspace.Model;
             ViewSet views = workspace.Views;
@@ -29,6 +32,7 @@ namespace RunExample
 
             Person universityStaff = model.AddPerson("University Staff", "A staff member of the Contoso University.");
             SoftwareSystem contosoUniversity = model.AddSoftwareSystem("Contoso University", "Allows staff to view and update student, course, and instructor information.");
+
             universityStaff.Uses(contosoUniversity, "uses");
 
             SystemContextView contextView = views.CreateSystemContextView(contosoUniversity, "Context", "The system context view for the Contoso University system.");
@@ -72,18 +76,6 @@ namespace RunExample
 
             #endregion
 
-            #region DynamicView
-
-            //// create an example dynamic view for a feature
-            //DynamicView dynamicView = views.CreateDynamicView(webApplication, "GetCoursesForDepartment", "A summary of the \"get courses for department\" feature.");
-            //Component courseController = webApplication.GetComponentWithName("CourseController");
-            //Component schoolContext = webApplication.GetComponentWithName("SchoolContext");
-            //dynamicView.Add(universityStaff, "Requests the list of courses from", courseController);
-            //dynamicView.Add(courseController, "Uses", schoolContext);
-            //dynamicView.Add(schoolContext, "Gets a list of courses from", database);
-
-            #endregion
-
             #region Documentation
 
             //Documentation documentation = workspace.Documentation;
@@ -105,11 +97,8 @@ namespace RunExample
             styles.Add(new ElementStyle("Database") { Shape = Shape.Cylinder });
             styles.Add(new ElementStyle(Tags.Component) { Background = "#407f7f", Color = "#ffffff" });
 
-            StructurizrClient structurizrClient = new StructurizrClient("99c393d5-6c8a-492f-b63a-347f03a9a6c5", "7b7d7869-b4f6-4806-819c-1f8b8ed38e3f");
-            structurizrClient.PutWorkspace(33871, workspace);
-        }
-
-
-        
+            StructurizrClient structurizrClient = new StructurizrClient(apiKey, apiSecret);
+            structurizrClient.PutWorkspace(workSpaceId, workspace);
+        }        
     }
 }
